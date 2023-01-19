@@ -38,7 +38,4 @@ object NetworkModule {
     fun provideApiService(retrofit:Retrofit):GetPokemonService {
        return retrofit.create(GetPokemonService::class.java)
     }
-
-
-
 }
