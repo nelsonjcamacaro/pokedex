@@ -1,4 +1,8 @@
 package com.neldev.pokedexapp.data
 
-class PokemonRepository {
+import javax.inject.Inject
+
+class PokemonRepository @Inject constructor() {
+
+    suspend fun getPokemon(){}
 }
