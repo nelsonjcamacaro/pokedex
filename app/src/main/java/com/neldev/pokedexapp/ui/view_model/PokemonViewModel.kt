@@ -10,31 +10,29 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class PokemonViewModel @Inject constructor(private val repository: PokemonRepository):ViewModel() {
+/*@HiltViewModel*/
+class PokemonViewModel(private val repository: PokemonRepository) : ViewModel() {
 
+    val pokemon = MutableLiveData<PokemonResponse?>(null)
     init {
-        Log.d("MiTag", "en el init del viewModel")
         getPokemon()
     }
 
-
-    val pokemon = MutableLiveData<PokemonResponse?>(null)
-
-    private fun getPokemon(){
+    private fun getPokemon() {
         viewModelScope.launch {
-            val result = repository.getPokemon()
-            pokemon.value = result
             Log.d("MiTag", "ViewModel")
+            val result = repository.getPokemon()
+            Log.d("MiTag", "$result")
+            pokemon.value = result
         }
     }
 }
 
-class PokemonViewModelFactory @Inject constructor(
-    private val remoteDataSource: PokemonRemoteDataSource,
-    private val repository: PokemonRepository
-) : ViewModelProvider.Factory {
+class PokemonViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        val remoteDataSource = PokemonRemoteDataSource()
+        val repository = PokemonRepository(remoteDataSource)
+
         return PokemonViewModel(repository) as T
     }
 }

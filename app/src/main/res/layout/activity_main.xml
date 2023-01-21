@@ -18,14 +18,14 @@
         android:maxLines="1"
         android:singleLine="true"
         android:imeOptions="actionDone"
-        android:queryBackground="@color/white"
-        android:textColor="@color/white"
+        android:queryBackground="@color/black"
+        android:textColor="@color/black"
         android:hint="@string/search"
         android:searchHintIcon="@color/white"
         android:drawableLeft="@drawable/ic_search"
         android:drawablePadding="8dp"
         android:drawableTint="@color/black"
-        android:textCursorDrawable="@color/white"
+        android:textCursorDrawable="@color/black"
         android:paddingStart="4dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
