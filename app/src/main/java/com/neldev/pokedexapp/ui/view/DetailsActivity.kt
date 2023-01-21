@@ -7,7 +7,7 @@ import com.neldev.pokedexapp.databinding.ActivityDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
 
@@ -15,5 +15,9 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+
+    companion object{
+        const val KEY1 ="Id of pokemon"
     }
 }

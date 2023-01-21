@@ -1,5 +1,6 @@
 package com.neldev.pokedexapp.ui.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -52,7 +53,14 @@ class MainActivity /*@Inject constructor(
         viewModel.pokemon.observe(this) { listOfPokemon ->
             if (listOfPokemon?.results != null) {
 
-                val adapter = PokemonAdapter(listOfPokemon.results)
+                val adapter = PokemonAdapter(listOfPokemon.results,object: PokemonAdapter.PokemonListener{
+                    override fun onCLickPokemon(pokemon: Pokemon) {
+                        Toast.makeText(this@MainActivity, pokemon.name,Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@MainActivity,DetailsActivity::class.java)
+                            .apply{ putExtra(DetailsActivity.KEY1,pokemon.url.substring(34).dropLast(1)) }
+                        startActivity(intent)
+                    }
+                })
                 binding.rvMain.adapter = adapter
                 binding.editText.addTextChangedListener {
                     val pokemonFiltered = listOfPokemon.results.filter { pokemon ->

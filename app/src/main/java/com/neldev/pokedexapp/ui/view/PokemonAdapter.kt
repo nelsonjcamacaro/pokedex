@@ -7,8 +7,12 @@ import com.neldev.pokedexapp.data.Pokemon
 import com.neldev.pokedexapp.databinding.MainCardViewBinding
 import com.squareup.picasso.Picasso
 
-class PokemonAdapter(private var pokemonList: List<Pokemon>) :
+class PokemonAdapter(private var pokemonList: List<Pokemon>,val listener:PokemonListener?= null) :
     RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
+
+    interface PokemonListener{
+        fun onCLickPokemon(pokemon: Pokemon)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -40,6 +44,10 @@ class PokemonAdapter(private var pokemonList: List<Pokemon>) :
             Picasso.get()
                 .load(imgUrl)
                 .into(binding.ivCardView)
+
+            binding.root.setOnClickListener{
+                listener?.onCLickPokemon(pokemon)
+            }
         }
     }
 }
