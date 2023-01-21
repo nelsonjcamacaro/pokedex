@@ -1,29 +1,33 @@
 package com.neldev.pokedexapp.ui.view_model
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.neldev.pokedexapp.data.*
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.neldev.pokedexapp.data.pokemon_details.PokemonDetails
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /*@HiltViewModel*/
 class PokemonViewModel(private val repository: PokemonRepository) : ViewModel() {
 
     val pokemon = MutableLiveData<PokemonResponse?>(null)
+    val pokemonDetails = MutableLiveData<PokemonDetails?>(null)
     init {
         getPokemon()
     }
 
     private fun getPokemon() {
         viewModelScope.launch {
-            Log.d("MiTag", "ViewModel")
             val result = repository.getPokemon()
-            Log.d("MiTag", "$result")
             pokemon.value = result
+        }
+    }
+
+    fun getPokemonDetails(pokemonId:String){
+        viewModelScope.launch {
+            val result = repository.getPokemonDetails(pokemonId)
+            pokemonDetails.value = result
         }
     }
 }
