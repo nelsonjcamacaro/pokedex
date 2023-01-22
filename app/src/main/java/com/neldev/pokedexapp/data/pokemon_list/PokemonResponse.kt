@@ -1,8 +1,7 @@
-package com.neldev.pokedexapp.data
+package com.neldev.pokedexapp.data.pokemon_list
 
 import com.google.gson.annotations.SerializedName
-import java.util.Objects
-import javax.inject.Inject
+import com.neldev.pokedexapp.data.pokemon_list.Pokemon
 
 class PokemonResponse(
     @SerializedName("count") val count:Int?,

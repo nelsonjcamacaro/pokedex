@@ -3,11 +3,11 @@ package com.neldev.pokedexapp.ui.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.neldev.pokedexapp.data.Pokemon
+import com.neldev.pokedexapp.data.pokemon_list.Pokemon
 import com.neldev.pokedexapp.databinding.MainCardViewBinding
 import com.squareup.picasso.Picasso
 
-class PokemonAdapter(private var pokemonList: List<Pokemon>,val listener:PokemonListener?= null) :
+class PokemonAdapter(private var pokemonList: List<Pokemon>, val listener:PokemonListener?= null) :
     RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
     interface PokemonListener{

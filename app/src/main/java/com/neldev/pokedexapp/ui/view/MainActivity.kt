@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.neldev.pokedexapp.data.Pokemon
+import com.neldev.pokedexapp.data.pokemon_list.Pokemon
 import com.neldev.pokedexapp.databinding.ActivityMainBinding
 import com.neldev.pokedexapp.ui.view_model.PokemonViewModel
 import com.neldev.pokedexapp.ui.view_model.PokemonViewModelFactory

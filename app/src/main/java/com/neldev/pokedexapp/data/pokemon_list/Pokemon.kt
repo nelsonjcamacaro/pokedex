@@ -1,4 +1,4 @@
-package com.neldev.pokedexapp.data
+package com.neldev.pokedexapp.data.pokemon_list
 
 import com.google.gson.annotations.SerializedName
 

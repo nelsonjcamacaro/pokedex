@@ -1,13 +1,14 @@
 package com.neldev.pokedexapp.data
 
 import android.util.Log
+import com.neldev.pokedexapp.data.pokemon_characteristics.PokemonEncounters
 import com.neldev.pokedexapp.data.pokemon_details.PokemonDetails
+import com.neldev.pokedexapp.data.pokemon_list.PokemonResponse
 import com.neldev.pokedexapp.di.RetrofitService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import retrofit2.awaitResponse
-import javax.inject.Inject
 
 class PokemonRemoteDataSource /*@Inject constructor(private val api: GetPokemonService)*/ {
 
@@ -56,6 +57,22 @@ class PokemonRemoteDataSource /*@Inject constructor(private val api: GetPokemonS
                 pokemonDetailsResponse
             } catch (e: Exception) {
                 Log.d("MiTag", "details RemoteData:  NO ok ")
+                null
+            }
+        }
+    }
+
+    suspend fun getPokemonEncounters(pokemonId: String): PokemonEncounters? {
+        val service = RetrofitService.instance.create(GetPokemonService::class.java).getPokemonEncounters(
+            pokemonId
+        )
+
+        return withContext(Dispatchers.IO) {
+            try {
+                val response: Response<PokemonEncounters> = service.awaitResponse()
+                val pokemonEncountersResponse = response.body()
+                pokemonEncountersResponse
+            } catch (e: Exception) {
                 null
             }
         }
