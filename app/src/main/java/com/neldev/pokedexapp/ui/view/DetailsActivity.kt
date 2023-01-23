@@ -1,5 +1,6 @@
 package com.neldev.pokedexapp.ui.view
 
+import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -37,6 +38,7 @@ class DetailsActivity : AppCompatActivity() {
         detailsRendering()
         encounterAreasRendering()
         obtainEvolutionChainId()
+        backButton()
     }
 
     companion object {
@@ -62,13 +64,13 @@ class DetailsActivity : AppCompatActivity() {
                     abilities += pokemonDetails.abilities?.get(i)?.ability?.name + ", "
                     Log.d("MINUEVOTAG", "$abilities")
                 }
-                binding.tvDetails2.text = "*Abilities: ${abilities.dropLast(2)}"
+                binding.tvDetails3.text = "*Abilities: ${abilities.dropLast(2)}"
 
                 var pokemonType = ""
                 for (i in pokemonDetails.types?.indices!!) {
                     pokemonType += pokemonDetails.types?.get(i)?.type?.name + ", "
                 }
-                binding.tvDetails3.text = "*Types: ${pokemonType.dropLast(2)}"
+                binding.tvDetails2.text = "*Types: ${pokemonType.dropLast(2)}"
 
                 var pokemonMoves = ""
                 for (i in pokemonDetails.moves?.indices!!) {
@@ -141,4 +143,10 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
+    private fun backButton(){
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this@DetailsActivity,MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }

@@ -5,7 +5,8 @@
     android:layout_height="166dp"
     android:layout_width="match_parent"
     app:cardCornerRadius="16dp"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/blue_pokemon">
 
     <ImageView
         android:id="@+id/ivCardView"
@@ -15,12 +16,14 @@
 
     <TextView
         android:id="@+id/tvCardView"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="100dp"
+        android:fontFamily="@font/amiko_bold"
+        android:layout_marginStart="50dp"
         android:layout_gravity="center"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:gravity="center"
-        android:textSize="20sp"/>
+        android:textSize="24sp"/>
 
 </androidx.cardview.widget.CardView>
