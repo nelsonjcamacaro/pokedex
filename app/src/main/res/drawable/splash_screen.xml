@@ -5,11 +5,10 @@
     <item android:drawable="@color/blue_pokemon"/>
 
     <item
-        android:width="300dp"
+        android:width="400dp"
         android:height="150dp"
         android:gravity="center">
         <bitmap android:src="@drawable/pokedex_logo2"/>
-
     </item>
 
 </layer-list>

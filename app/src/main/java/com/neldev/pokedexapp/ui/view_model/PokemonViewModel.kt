@@ -1,10 +1,13 @@
 package com.neldev.pokedexapp.ui.view_model
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.neldev.pokedexapp.ContextClass.Companion.context
 import com.neldev.pokedexapp.data.*
+import com.neldev.pokedexapp.data.database.PokemonLocalDataSource
 import com.neldev.pokedexapp.data.network.PokemonRemoteDataSource
 import com.neldev.pokedexapp.data.pokemon_characteristics.PokemonEncounters
 import com.neldev.pokedexapp.data.pokemon_details.PokemonDetails
@@ -30,6 +33,7 @@ class PokemonViewModel(private val repository: PokemonRepository) : ViewModel() 
         viewModelScope.launch {
             val result = repository.getPokemon()
             pokemon.value = result
+            //repository.insertPokemonInDao(result)
         }
     }
 
@@ -62,9 +66,10 @@ class PokemonViewModel(private val repository: PokemonRepository) : ViewModel() 
     }
 }
 
-class PokemonViewModelFactory : ViewModelProvider.Factory {
+class PokemonViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         val remoteDataSource = PokemonRemoteDataSource()
+        //val localDataSource = PokemonLocalDataSource(context)
         val repository = PokemonRepository(remoteDataSource)
 
         return PokemonViewModel(repository) as T

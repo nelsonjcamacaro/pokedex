@@ -49,7 +49,7 @@ class MainActivity /*@Inject constructor(
                         val intent = Intent(this@MainActivity,DetailsActivity::class.java)
                             .apply{ putExtra(DetailsActivity.KEY1,pokemon.url.substring(34).dropLast(1)) }
                         startActivity(intent)
-                        //finish()
+                        finish()
                     }
                 })
                 binding.rvMain.adapter = adapter
@@ -61,6 +61,5 @@ class MainActivity /*@Inject constructor(
                 }
             }
         }
-
     }
 }
