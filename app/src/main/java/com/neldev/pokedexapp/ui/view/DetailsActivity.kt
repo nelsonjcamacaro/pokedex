@@ -147,6 +147,7 @@ class DetailsActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             val intent = Intent(this@DetailsActivity,MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.neldev.pokedexapp.data
+package com.neldev.pokedexapp.data.network
 
 import com.neldev.pokedexapp.data.pokemon_characteristics.PokemonEncounters
 import com.neldev.pokedexapp.data.pokemon_details.PokemonDetails

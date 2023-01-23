@@ -1,5 +1,6 @@
 package com.neldev.pokedexapp.data
 
+import com.neldev.pokedexapp.data.network.PokemonRemoteDataSource
 import com.neldev.pokedexapp.data.pokemon_characteristics.PokemonEncounters
 import com.neldev.pokedexapp.data.pokemon_details.PokemonDetails
 import com.neldev.pokedexapp.data.pokemon_evolution.PokemonEvolutionChain

@@ -1,4 +1,4 @@
-package com.neldev.pokedexapp.data
+package com.neldev.pokedexapp.data.network
 
 import android.util.Log
 import com.neldev.pokedexapp.data.pokemon_characteristics.PokemonEncounters

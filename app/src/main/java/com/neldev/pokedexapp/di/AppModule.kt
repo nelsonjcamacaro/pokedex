@@ -1,19 +1,8 @@
 package com.neldev.pokedexapp.di
 
-import androidx.lifecycle.ViewModelProvider
-import com.neldev.pokedexapp.data.GetPokemonService
-import com.neldev.pokedexapp.data.PokemonRemoteDataSource
-import com.neldev.pokedexapp.data.PokemonRepository
-import com.neldev.pokedexapp.ui.view_model.PokemonViewModel
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
