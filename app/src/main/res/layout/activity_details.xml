@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/detailsLayout"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.DetailsActivity">
@@ -12,80 +12,96 @@
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvDetails1"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivDetails"/>
-
-    <TextView
-        android:id="@+id/tvDetails2"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_margin="24dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivDetails" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetails1"/>
-
-    <TextView
-        android:id="@+id/tvDetails3"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_margin="24dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetails2"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvDetails1"
+        app:layout_constraintVertical_bias="0"
+        android:background="@color/white"
+        android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/tvDetails4"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_margin="24dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetails3"/>
 
-    <TextView
-        android:id="@+id/tvDetails5"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_margin="24dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+            <TextView
+                android:id="@+id/tvDetails2"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetails4"/>
+            <TextView
+                android:id="@+id/tvDetails3"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.551"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetails2" />
 
-    <TextView
-        android:id="@+id/tvDetails6"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_margin="24dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetails5"/>
+            <TextView
+                android:id="@+id/tvDetails4"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetails3" />
 
+            <TextView
+                android:id="@+id/tvDetails5"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetails4" />
+
+            <TextView
+                android:id="@+id/tvDetails6"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetails5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

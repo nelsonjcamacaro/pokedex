@@ -3,6 +3,8 @@ package com.neldev.pokedexapp.data
 import android.util.Log
 import com.neldev.pokedexapp.data.pokemon_characteristics.PokemonEncounters
 import com.neldev.pokedexapp.data.pokemon_details.PokemonDetails
+import com.neldev.pokedexapp.data.pokemon_evolution.PokemonEvolutionChain
+import com.neldev.pokedexapp.data.pokemon_evolution.PokemonSpecies
 import com.neldev.pokedexapp.data.pokemon_list.PokemonResponse
 import com.neldev.pokedexapp.di.RetrofitService
 import kotlinx.coroutines.Dispatchers
@@ -63,15 +65,50 @@ class PokemonRemoteDataSource /*@Inject constructor(private val api: GetPokemonS
     }
 
     suspend fun getPokemonEncounters(pokemonId: String): PokemonEncounters? {
-        val service = RetrofitService.instance.create(GetPokemonService::class.java).getPokemonEncounters(
-            pokemonId
-        )
+        val service =
+            RetrofitService.instance.create(GetPokemonService::class.java).getPokemonEncounters(
+                pokemonId
+            )
 
         return withContext(Dispatchers.IO) {
             try {
                 val response: Response<PokemonEncounters> = service.awaitResponse()
                 val pokemonEncountersResponse = response.body()
                 pokemonEncountersResponse
+            } catch (e: Exception) {
+                null
+            }
+        }
+    }
+
+    suspend fun getPokemonSpecies(pokemonId: String):PokemonSpecies? {
+        val service =
+            RetrofitService.instance.create(GetPokemonService::class.java).getPokemonSpecies(
+                pokemonId
+            )
+
+        return withContext(Dispatchers.IO) {
+            try {
+                val response: Response<PokemonSpecies> = service.awaitResponse()
+                val pokemonSpeciesResponse = response.body()
+                pokemonSpeciesResponse
+            } catch (e: Exception) {
+                null
+            }
+        }
+    }
+
+    suspend fun getPokemonEvolutionChain(pokemonChainId: String):PokemonEvolutionChain? {
+        val service =
+            RetrofitService.instance.create(GetPokemonService::class.java).getPokemonEvolutionChain(
+                pokemonChainId
+            )
+
+        return withContext(Dispatchers.IO) {
+            try {
+                val response: Response<PokemonEvolutionChain> = service.awaitResponse()
+                val pokemonEvolutionChainResponse = response.body()
+                pokemonEvolutionChainResponse
             } catch (e: Exception) {
                 null
             }

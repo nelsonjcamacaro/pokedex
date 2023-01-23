@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Pokedex App</string>
     <string name="search">Buscar por nombre</string>
-    <string name="without_information">Without Information</string>
+    <string name="without_information">No data</string>
+    <string name="final_evolution_empty">*Final Evolution: No data</string>
+    <string name="encountersArea_empty">*Encounters areas: No data</string>
+    <string name="moves_empty">*Moves: No Data</string>
 </resources>

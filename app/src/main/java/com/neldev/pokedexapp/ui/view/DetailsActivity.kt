@@ -1,7 +1,11 @@
 package com.neldev.pokedexapp.ui.view
 
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.util.Log
 import androidx.activity.viewModels
 import com.neldev.pokedexapp.R
@@ -29,8 +33,10 @@ class DetailsActivity : AppCompatActivity() {
         uploadPokemonImg(pokemonId.toString())
         viewModel.getPokemonDetails(pokemonId.toString())
         viewModel.getPokemonEncounters(pokemonId.toString())
+        viewModel.getPokemonSpecies(pokemonId.toString())
         detailsRendering()
         encounterAreasRendering()
+        obtainEvolutionChainId()
     }
 
     companion object {
@@ -54,45 +60,85 @@ class DetailsActivity : AppCompatActivity() {
                 var abilities = ""
                 for (i in pokemonDetails.abilities?.indices!!) {
                     abilities += pokemonDetails.abilities?.get(i)?.ability?.name + ", "
-                    Log.d("MINUEVOTAG","$abilities")
+                    Log.d("MINUEVOTAG", "$abilities")
                 }
                 binding.tvDetails2.text = "*Abilities: ${abilities.dropLast(2)}"
 
-                var  pokemonType = ""
-                for (i in pokemonDetails.types?.indices!!){
-                    pokemonType += pokemonDetails.types?.get(i)?.type?.name +", "
+                var pokemonType = ""
+                for (i in pokemonDetails.types?.indices!!) {
+                    pokemonType += pokemonDetails.types?.get(i)?.type?.name + ", "
                 }
                 binding.tvDetails3.text = "*Types: ${pokemonType.dropLast(2)}"
 
                 var pokemonMoves = ""
-                for (i in (0..10)){
-                    pokemonMoves += pokemonDetails.moves?.get(i)?.move?.name +", "
+                for (i in pokemonDetails.moves?.indices!!) {
+                    pokemonMoves += pokemonDetails.moves?.get(i)?.move?.name +"\n- "
                 }
-                binding.tvDetails4.text = "*Moves: ${pokemonMoves.dropLast(2)}"
+                binding.tvDetails4.text = "*Moves:\n- ${pokemonMoves.dropLast(2)}"
 
 
             } else {
                 Log.d("MiTag", "detailsRendering:  NO ok ")
+                binding.tvDetails4.text = getString(R.string.moves_empty)
+
             }
         }
     }
 
-    private fun encounterAreasRendering(){
+    private fun encounterAreasRendering() {
         viewModel.pokemonEncounter.observe(this) { pokemonEncounters ->
-            Log.d("MINUEVOTAG3", "$pokemonEncounters")
             if (pokemonEncounters != null) {
                 var encounters = ""
-                Log.d("MINUEVOTAG2","$encounters")
-                for (i in pokemonEncounters.indices) {
-                    encounters += pokemonEncounters[i].locationArea?.name + ", "
-                    Log.d("MINUEVOTAG","$encounters")
+                for (i in (pokemonEncounters.indices)) {
+                    encounters += pokemonEncounters[i].locationArea?.name + "\n- "
                 }
-                if (pokemonEncounters.isEmpty()){
-                    binding.tvDetails6.text = "*Encounters areas: "+getString(R.string.without_information)
-                }else{
-                    binding.tvDetails6.text = "*Encounters areas: ${encounters.dropLast(2)}"
+                if (pokemonEncounters.isEmpty()) {
+                    binding.tvDetails6.text =
+                        "*Encounters areas: " + getString(R.string.without_information)
+                } else {
+                    binding.tvDetails6.text = "*Encounters areas:\n- ${encounters.dropLast(2)}"
                 }
+            }else{
+                binding.tvDetails6.text = getString(R.string.encountersArea_empty)
             }
         }
     }
+
+    //this funtion it's to find the evolution Chain ID, because that it's different to normal Id
+    private fun obtainEvolutionChainId() {
+        Log.d("probando", "si me ejecuto")
+        viewModel.pokemonSpecies.observe(this) { pokemonSpecies ->
+            var evolutionChainId = ""
+            if (pokemonSpecies != null) {
+                evolutionChainId =
+                    pokemonSpecies.evolutionChain?.url?.substring(42)?.dropLast(1).toString()
+                Log.d("probando", "$evolutionChainId")
+            }
+            viewModel.getEvolutionChain(evolutionChainId)
+
+        }
+        evolutionChainRendering()
+    }
+
+    private fun evolutionChainRendering() {
+        viewModel.pokemonEvolutionChain.observe(this) { pokemonEvolutionChain ->
+            if (pokemonEvolutionChain != null) {
+
+                if (pokemonEvolutionChain.chain?.evolvesTo?.get(0)?.evolvesTo?.isEmpty() == true){
+                    var pokemonEvolution1 =
+                    pokemonEvolutionChain.chain.evolvesTo[0]?.species?.name?.replaceFirstChar(Char::titlecase)
+                    binding.tvDetails5.text = "*Final Evolution: $pokemonEvolution1"
+                }else{
+                    var pokemonEvolution2 =
+                        pokemonEvolutionChain.chain?.evolvesTo?.get(0)?.evolvesTo?.get(0)?.species?.name?.replaceFirstChar(
+                            Char::titlecase
+                        )
+                    binding.tvDetails5.text = "*Final Evolution: $pokemonEvolution2"
+                }
+            }else{
+                binding.tvDetails5.text =  getString(R.string.final_evolution_empty)
+            }
+        }
+    }
+
 }
